@@ -45,10 +45,10 @@ $api->version('v1', function ($api) {
 
 
 
-    $api->post('login', 'ApiController@login');
-    $api->post('register', 'ApiController@register');
+    //$api->post('login', 'ApiController@login');
+    //$api->post('register', 'ApiController@register');
 
-    $api->group(['middleware' => 'auth.jwt'], function ($api) {
+   /* $api->group(['middleware' => 'auth.jwt'], function ($api) {
         $api->get('logout', 'ApiController@logout');
 
         $api->get('user', 'ApiController@getAuthUser');
@@ -58,7 +58,7 @@ $api->version('v1', function ($api) {
         $api->post('products', 'ProductController@store');
         $api->put('products/{id}', 'ProductController@update');
         $api->delete('products/{id}', 'ProductController@destroy');
-    });
+    });*/
 
 });
 $api->version('v2', function ($api) {

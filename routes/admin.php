@@ -20,7 +20,7 @@ $api->version ('v1', $params, function ($api) {
         //需要登录的
         $api->group ([ 'middleware' => 'api.auth' ], function ($api) {
             //禁用（启用）用户
-            //$api->path ('users/{user}/lock', [\App\Http\Controllers\Admin\UserController::class, 'lock' ]);
+            //$api->path ('users/{user}/lock', \App\Http\Controllers\Admin\UserController::class , 'lock');
             //用户管理
             //资源路由
             $api->resource ('users', \App\Http\Controllers\Admin\UserController::class, [
@@ -30,7 +30,23 @@ $api->version ('v1', $params, function ($api) {
             /*
              * 分类相关的路由
              */
-            $api->resource ('category', \App\Http\Controllers\Admin\CategoryController::class, ['except'=>['destroy']]);
+          //  $api->patch ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
+           // $api->patch ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
+            /*
+            * 商品相关的路由
+            */
+            //$api->patch ('goods/{goods}/on', \App\Http\Controllers\Admin\GoodsController::class, 'isOn');
+            //$api->patch ('goods/{goods}/recommend', \App\Http\Controllers\Admin\CategoryController::class, 'isRecommend');
+            $api->resource ('goods', \App\Http\Controllers\Admin\GoodsController::class, [ 'except' => [ 'destroy' ] ]);
+            /*
+             * 评价相关的路由
+             */
+            //评论列表
+            $api->get ('comments', [\App\Http\Controllers\Admin\CommentController::class, 'index']);
+            //评价详情
+            $api->get ('comments/{comment}', [\App\Http\Controllers\Admin\CommentController::class, 'show']);
+            //回复评价
+            $api->get ('comments/{comment}/reply', [\App\Http\Controllers\Admin\CommentController::class, 'reply']);
         });
     });
 });
