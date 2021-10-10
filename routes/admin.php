@@ -46,7 +46,18 @@ $api->version ('v1', $params, function ($api) {
             //评价详情
             $api->get ('comments/{comment}', [\App\Http\Controllers\Admin\CommentController::class, 'show']);
             //回复评价
-            $api->get ('comments/{comment}/reply', [\App\Http\Controllers\Admin\CommentController::class, 'reply']);
+            //$api->path ('comments/{comment}/reply', [\App\Http\Controllers\Admin\CommentController::class, 'reply']);
+
+            /*
+             * 订单相关的路由
+             */
+            // 订单列表
+            $api->get ('orders', [\App\Http\Controllers\Admin\OrderController::class, 'index']);
+            //评价详情
+            $api->get ('orders/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show']);
+            //回复评价
+            //$api->path ('orders/{order}/post', [\App\Http\Controllers\Admin\OrderController::class, 'post']);
+
         });
     });
 });

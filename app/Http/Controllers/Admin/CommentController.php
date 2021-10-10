@@ -15,20 +15,20 @@ class CommentController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
         //
-        $comments=Comment::paginate(2);
+        $comments = Comment::paginate (2);
         return $this->response->paginator ($comments, new CommentTransformer());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store (Request $request)
     {
         //
     }
@@ -37,22 +37,23 @@ class CommentController extends BaseController
      * 评价详情
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show (Comment $comment)
     {
         //
+        return $this->response->item ($comment, new CommentTransformer());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update (Request $request, $id)
     {
         //
     }
@@ -61,17 +62,24 @@ class CommentController extends BaseController
      * 删除评价
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy ($id)
     {
         //
     }
+
     /*
      * 回复评价
      */
-    public function reply(){
-
+    public function reply (Request $request, Comment $comment)
+    {
+        $request->validate ([
+            'reply' => 'require|max:255',
+        ]);
+        $comment->reply = $request->input ('reply');
+        $comment->save ();
+        return $this->response->noContent ();
     }
 }

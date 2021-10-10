@@ -9,6 +9,7 @@ namespace App\Transformer;
 
 
 use App\Models\Comment;
+use App\Models\Good;
 
 class CommentTransformer
 {
@@ -22,6 +23,14 @@ class CommentTransformer
 
             'user_id'=>$comment->user_id,
             'goods_id'=>$comment->goods_id,
+            'created_at'=>$comment->created_at,
+            'updated_at'=>$comment->updated_at,
         ];
+    }
+    public function includeUser(Comment $comment){
+        return $this->item($comment->user,new UserTransformer());
+    }
+    public function includeGoods(Good $good){
+        return $this->item($good->goods,new GoodTransformer());
     }
 }

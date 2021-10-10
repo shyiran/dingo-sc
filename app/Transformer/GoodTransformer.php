@@ -12,6 +12,7 @@ use App\Models\Good;
 
 class GoodTransformer
 {
+    protected $availableIncludes=array('category','user','comments');
     public function transform (Good $good)
     {
         return [
