@@ -57,7 +57,12 @@ $api->version ('v1', $params, function ($api) {
             $api->get ('orders/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show']);
             //回复评价
             //$api->path ('orders/{order}/post', [\App\Http\Controllers\Admin\OrderController::class, 'post']);
-
+            /*
+             * 商品轮播图路由
+             */
+            $api->patch ('slides/{slide}/seq', \App\Http\Controllers\Admin\SlideController::class, 'isOn');
+            //$api->patch ('goods/{goods}/recommend', \App\Http\Controllers\Admin\CategoryController::class, 'isRecommend');
+            $api->resource ('slides', \App\Http\Controllers\Admin\SlideController::class);
         });
     });
 });

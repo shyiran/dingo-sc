@@ -16,32 +16,32 @@ use Illuminate\Support\Facades\Route;*/
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+//系统默认
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-$api = app('Dingo\Api\Routing\Router');
+//$api = app('Dingo\Api\Routing\Router');
 
-$api->version('v1', function ($api) {
-    $api->get('index',[TestController::class,'index']);
-    $api->get('test',[\app\Http\Controllers\TestController::class,'test']);
-    $api->get('users/{id}', [TestController::class,'show']);
-    $api->get('v1users/{id}', [v1_userController::class,'show']);
-    $api->get('v2users/{id}', [v2_userController::class,'show']);
+//$api->version('v1', function ($api) {
+    //$api->get('index',[TestController::class,'index']);
 
+    //$api->get('test',[\app\Http\Controllers\TestController::class,'test']);
+    //$api->get('users/{id}', [TestController::class,'show']);
+    //$api->get('v1users/{id}', [v1_userController::class,'show']);
+    //$api->get('v2users/{id}', [v2_userController::class,'show']);
     //路由命名
-    $api->get('name', ['as' => 'test.name', 'uses' =>'App\Http\Controllers\TestController@name']);
+    //$api->get('name', ['as' => 'test.name', 'uses' =>'App\Http\Controllers\TestController@name']);
     //需要登录的路由
-    $api->group(['middleware'=>'api.auth'],function ($api){
-        $api->get('users',[\App\Http\Controllers\TestController::class,'users']);
-    });
+    //$api->group(['middleware'=>'api.auth'],function ($api){
+    //    $api->get('users',[\App\Http\Controllers\TestController::class,'users']);
+    //});
 
     //登录
-    $api->post('login',[TestController::class,'login']);
-    $api->post('logout', [TestController::class,'logout']);
+   // $api->post('login',[TestController::class,'login']);
+   // $api->post('logout', [TestController::class,'logout']);
 
-    $api->post('refresh', [TestController::class,'refresh']);
-    $api->post('me', [TestController::class,'me']);
+   // $api->post('refresh', [TestController::class,'refresh']);
+   // $api->post('me', [TestController::class,'me']);
 
 
 
@@ -60,10 +60,10 @@ $api->version('v1', function ($api) {
         $api->delete('products/{id}', 'ProductController@destroy');
     });*/
 
-});
-$api->version('v2', function ($api) {
-    $api->get('tests',[\app\Http\Controllers\TestController::class,'tests']);
-    $api->get('name', ['as' => 'test.name', 'uses' =>'App\Http\Controllers\TestController@name']);
-});
+//});
+//$api->version('v2', function ($api) {
+ //   $api->get('tests',[\app\Http\Controllers\TestController::class,'tests']);
+ //   $api->get('name', ['as' => 'test.name', 'uses' =>'App\Http\Controllers\TestController@name']);
+//});
 
 

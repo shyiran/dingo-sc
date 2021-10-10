@@ -17,6 +17,11 @@ class TestController extends BaseController
         $this->middleware ('auth:api', [ 'except' => [ 'login', 'refresh' ] ]);
     }
 
+    public function test01 ()
+    {
+
+    }
+
     public function index ()
     {
         //$users = User::all ();
@@ -136,13 +141,14 @@ class TestController extends BaseController
         auth ('api')->logout ();
         return response ()->json ([ 'message' => 'Successfully logged out' ]);
     }
+
     /**
      * Refresh a token.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh()
+    public function refresh ()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        return $this->respondWithToken (auth ('api')->refresh ());
     }
 }

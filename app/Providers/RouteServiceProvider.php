@@ -38,25 +38,29 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            //前台
+            //前台接口API
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
-            //后台
+            //后台API接口，需要登录验证
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
-            //权限
+            //权限验证
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/auth.php'));
-
+            //前台web页面
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+            //杂项测试使用的
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/test.php'));
         });
     }
 
