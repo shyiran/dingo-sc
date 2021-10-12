@@ -32,6 +32,23 @@ $api->version ('v1', $params, function ($api) {
             */
             $api->patch ('category/{category}/status', [\App\Http\Controllers\Admin\CategoryController::class , 'status']);
             $api->resource ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
+            /*
+             * 商品相关的路由
+             */
+            //是否上架
+            $api->patch ('goods/{good}/on', [\App\Http\Controllers\Admin\GoodsController::class, 'isOn']);
+            //是否推荐
+            $api->patch ('goods/{good}/recommend', [\App\Http\Controllers\Admin\GoodsController::class, 'isRecommend']);
+            $api->resource ('goods', \App\Http\Controllers\Admin\GoodsController::class,
+                [ 'except' => [ 'destroy' ]
+            ]);
+
+
+
+
+
+
+
 
             //
             //资源路由
@@ -40,12 +57,10 @@ $api->version ('v1', $params, function ($api) {
 
           //  $api->patch ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
            //
-            /*
-            * 商品相关的路由
-            */
-            //$api->patch ('goods/{goods}/on', \App\Http\Controllers\Admin\GoodsController::class, 'isOn');
-            //$api->patch ('goods/{goods}/recommend', \App\Http\Controllers\Admin\CategoryController::class, 'isRecommend');
-            $api->resource ('goods', \App\Http\Controllers\Admin\GoodsController::class, [ 'except' => [ 'destroy' ] ]);
+
+            //
+            //
+
             /*
              * 评价相关的路由
              */

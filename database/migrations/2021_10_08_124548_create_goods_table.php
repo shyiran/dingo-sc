@@ -21,8 +21,8 @@ class CreateGoodsTable extends Migration
             $table->string ('description')->comment ("描述");
             $table->integer ('price')->comment ("价格");
             $table->integer ('stock')->comment ("库存");
-            $table->integer ('cover')->comment ("封面图");
-            $table->string ('pics')->comment ("产品图集");
+            $table->string('cover')->comment ("封面图");
+            $table->json('pics')->comment ("产品图集");
             $table->tinyInteger ('is_on')->default (0)->comment ("0，不上架，1，上架");
             $table->tinyInteger ('is_recommend')->default (0)->comment ("0不推荐，1推荐");
             $table->text ('details')->comment ("详情");

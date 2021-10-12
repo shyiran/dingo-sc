@@ -66,6 +66,52 @@ api/admin/category/14（put请求）
 
 api/admin/category/14/status（patch请求）
 
+**5.1添加商品**
+
+api/admin/goods（post）
+
+category_id：
+
+description：
+
+price：
+
+stock：
+
+cover：
+
+pics[]：
+
+details：
+
+title：
+
+【include=category,user】
+
+**5.2商品列表**
+
+api/admin/goods（get）
+
+**5.3商品详情**
+
+api/admin/goods/1?include=category,user
+
+**5.4更新商品**
+
+api/admin/goods/1（put）
+
+**5.5是否上架**
+
+api/admin/goods/1/on（patch）
+
+**5.6是否推荐**
+
+api/admin/goods/1/recommend（patch）
+
+
+
+
+
 
 
 原生查询
