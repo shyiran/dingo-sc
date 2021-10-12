@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\TestController;
 /**
  * Notes:
  * User: shyir
@@ -6,7 +7,7 @@
  */
 $api = app ('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
-    $api->group ([ 'prefix' => 'test' ], function ($api) {
-        $api->get('test01',[\app\Http\Controllers\TestController::class,'test01']);
-    });
+    $api->get('index',[TestController::class,'index']);
+    $api->get('name', ['as' => 'test.name', 'uses' => '\app\Http\Controllers\TestController@name']);
+    $api->get('users',[TestController::class,'users']);
 });

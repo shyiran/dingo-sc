@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Auth\LoginRequest;
+use phpDocumentor\Reflection\Utils;
 
 class LoginController extends BaseController
 {
@@ -42,8 +43,7 @@ class LoginController extends BaseController
     public function logout ()
     {
         auth ('api')->logout ();
-
-        return response ()->json ([ 'message' => 'Successfully logged out' ]);
+        return $this->response->noContent ();
     }
 
     /**

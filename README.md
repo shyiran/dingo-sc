@@ -1,13 +1,82 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+**使用到的一些技术：**
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1.阿里云OSS
 
-## About Laravel
+2.阿里云短信服务
+
+3.微信公众号
+
+4.微信，支付宝支付接口
+
+5.语言包zh_CN（composer require laravel-lang/lang:^10.1.7）
+
+6.dingo-serializer-switch
+
+7.分类树插件
+
+8.缓存
+
+9.模型事件（观察者模式）
+
+**API接口：**
+
+**1.1注册（api/auth/register）**
+
+name:
+
+email:
+
+password:
+
+**1.2登录（api/auth/login）**
+
+email:
+
+password:
+
+**1.3退出登录（api/auth/logout）**
+
+**1.4刷新TOKEN（api/auth/refresh）**
+
+**2.1用户列表**
+
+api/admin/users
+
+**2.1用户详情**
+
+api/admin/users/1
+
+**3.1禁用启用用户**
+
+api/admin/users/1/lock
+
+**4.1分类列表**
+
+api/admin/category（get请求）
+
+**4.2添加分类**
+
+api/admin/category（post请求）
+
+**4.3分类修改**
+
+api/admin/category/14（put请求）
+
+**4.4分类禁用和启用**
+
+api/admin/category/14/status（patch请求）
+
+
+
+原生查询
+
+异常及自定义异常
+
+表单验证
+
+JWT
+
+OAUTH2.0
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 

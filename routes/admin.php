@@ -19,19 +19,27 @@ $api->version ('v1', $params, function ($api) {
     $api->group ([ 'prefix' => 'admin' ], function ($api) {
         //需要登录的
         $api->group ([ 'middleware' => 'api.auth' ], function ($api) {
-            //禁用（启用）用户
-            //$api->path ('users/{user}/lock', \App\Http\Controllers\Admin\UserController::class , 'lock');
-            //用户管理
-            //资源路由
+            /*
+             * 用户管理
+             */
+             //禁用（启用）用户
+            $api->patch ('users/{user}/lock', [\App\Http\Controllers\Admin\UserController::class , 'lock']);
             $api->resource ('users', \App\Http\Controllers\Admin\UserController::class, [
                 'only' => [ 'index', 'show' ]
             ]);
-
             /*
-             * 分类相关的路由
-             */
+              分类相关
+            */
+            $api->patch ('category/{category}/status', [\App\Http\Controllers\Admin\CategoryController::class , 'status']);
+            $api->resource ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
+
+            //
+            //资源路由
+
+
+
           //  $api->patch ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
-           // $api->patch ('category', \App\Http\Controllers\Admin\CategoryController::class, [ 'except' => [ 'destroy' ] ]);
+           //
             /*
             * 商品相关的路由
             */
@@ -60,9 +68,9 @@ $api->version ('v1', $params, function ($api) {
             /*
              * 商品轮播图路由
              */
-            $api->patch ('slides/{slide}/seq', \App\Http\Controllers\Admin\SlideController::class, 'isOn');
+       //     $api->patch ('slides/{slide}/seq', \App\Http\Controllers\Admin\SlideController::class, 'isOn');
             //$api->patch ('goods/{goods}/recommend', \App\Http\Controllers\Admin\CategoryController::class, 'isRecommend');
-            $api->resource ('slides', \App\Http\Controllers\Admin\SlideController::class);
+        //    $api->resource ('slides', \App\Http\Controllers\Admin\SlideController::class);
         });
     });
 });

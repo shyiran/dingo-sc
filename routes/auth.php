@@ -8,7 +8,7 @@ $api = app ('Dingo\Api\Routing\Router');
 $api->version ('v1', [ 'middleware' => 'api.throttle', 'limit' => 60, 'expires' => 1 ], function ($api) {
     $api->group ([ 'prefix' => 'auth' ], function ($api) {
         //注册
-        $api->post ('register', [ \App\Http\Controllers\Auth\RegisterController::class, 'stroe' ]);
+        $api->post ('register', [ \App\Http\Controllers\Auth\RegisterController::class, 'register' ]);
         //登录
         $api->post ('login', [ \App\Http\Controllers\Auth\LoginController::class, 'login' ]);
         //需要登录验证

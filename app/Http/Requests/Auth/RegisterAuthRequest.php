@@ -19,7 +19,7 @@ class RegisterAuthRequest extends BaseRequest
     {
         return [
             //
-            'name' => 'required|min:3|max:16|string',
+            'name' => 'required|min:2|max:16|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6|max:10|confirmed'
         ];

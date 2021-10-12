@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BaseController;
@@ -12,17 +13,14 @@ class CategoryController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index ()
+    public function index (Request $request)
     {
-        //
-        $categories = Category::select('id','pid','name','level')
-            ->where('pid',0)
-            ->with([
-                'children:id,pid,name,level',
-                'children.children:id,pid,name,level'
-            ])
-            ->get ();
-        return $categories;
+        $type = $request->input ('type');
+        if ($type == 'all') {
+            return cache_category_all ();
+        } else {
+            return cache_category ();
+        }
     }
 
     /**
@@ -34,24 +32,11 @@ class CategoryController extends BaseController
      */
     public function store (Request $request)
     {
-        //
-        $request->validate ([
-            'name' => 'required|max:16'
-        ], [
-            'name.required' => '分类名称不能为空'
-        ]);
-        //  Category::create($request->only (['name','pid']));
-        //$inputs = $request->only ([ 'name', 'pid' ]);
-        $pid = $request->input ('pid', 0);
-        $level = $pid == 0 ? 1 : (Category::find ($pid)->level + 1);
-        if ($level > 3) {
-            return $this->response->errorBadRequest ("分类不能超过三级");
+        //校验数据
+        $inserData = $this->checkInputData ($request);
+        if (!is_array ($inserData)) {
+            return $inserData;
         }
-        $inserData = array (
-            'name' => $request->input ('name'),
-            'pid' => $pid,
-            'level' => $level,
-        );
         Category::create ($inserData);
         return $this->response->created ();
     }
@@ -63,23 +48,52 @@ class CategoryController extends BaseController
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show ()
+    public function show (Category $category)
     {
-        //Category $category
-        //return $category;
+        return $category;
 
     }
 
     /**
+     * 更新分类
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update (Request $request, $id)
+    public function update (Request $request, Category $category)
     {
-        //
+        //校验数据
+        $check_res = $this->checkInputData ($request);
+        if (!is_array ($check_res)) {
+            return $check_res;
+        }
+        $category->update ($check_res);
+        return $this->response->noContent ();
+    }
+
+    /*
+     * 检查参数
+     */
+    protected function checkInputData ($request)
+    {
+        $request->validate ([
+            'name' => 'required|max:16'
+        ], [
+            'name.required' => '分类名称不能为空'
+        ]);
+        $pid = $request->input ('pid', 0);
+        //计算最大LEVEL
+        $level = $pid == 0 ? 1 : (Category::find ($pid)->level + 1);
+        if ($level > 3) {
+            return $this->response->errorBadRequest ("分类不能超过三级");
+        }
+        return array (
+            'name' => $request->input ('name'),
+            'pid' => $pid,
+            'level' => $level,
+        );;
     }
 
     /**
@@ -91,5 +105,15 @@ class CategoryController extends BaseController
     public function destroy ($id)
     {
         //
+    }
+
+    /*
+     * 禁用和启用
+     */
+    public function status (Category $category)
+    {
+        $category->status = $category->status == 1 ? 0 : 1;
+        $category->save ();
+        return $this->response->noContent ();
     }
 }

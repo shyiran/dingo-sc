@@ -21,12 +21,12 @@ class UserController extends BaseController
         $email = $request->input ("email");
 
         $users = User::when ($name, function ($query) use ($name) {
-            $query->where ('name', 'like', "%$name%");
-        })
+                $query->where ('name', 'like', "%$name%");
+            })
             ->when ($email, function ($query) use ($email) {
                 $query->where ('email', $email);
             })
-            ->paginate (2);
+            ->paginate (4);
         return $this->response->paginator ($users, new UserTransformer());
     }
 

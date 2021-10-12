@@ -13,7 +13,7 @@ class RegisterController extends BaseController
     /*
      * 用户注册
      */
-    public function stroe(RegisterAuthRequest $request){
+    public function register(RegisterAuthRequest $request){
         $user =new User();
         $user->name = $request->input ('name');
         $user->email = $request->input ('email');

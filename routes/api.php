@@ -1,7 +1,7 @@
 <?php
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\v1\UserController as v1_userController;
-use App\Http\Controllers\v2\UserController as v2_userController;
+//use App\Http\Controllers\TestController;
+//use App\Http\Controllers\v1\UserController as v1_userController;
+//use App\Http\Controllers\v2\UserController as v2_userController;
 /*
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;*/

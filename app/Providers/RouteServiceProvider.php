@@ -58,7 +58,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
             //杂项测试使用的
-            Route::middleware('web')
+            Route::middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/test.php'));
         });
