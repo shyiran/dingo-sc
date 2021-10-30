@@ -62,6 +62,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/test.php'));
         });
+        //全局路由参数
+        // The `id` must be an integer
+        Route::pattern ('id', '[0-9]+');
     }
 
     /**
