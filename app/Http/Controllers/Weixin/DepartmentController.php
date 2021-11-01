@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends BaseController
 {
-    protected $authenticationToken;
 
-    public function __construct ()
-    {
-        $this->authenticationToken = "4bU8bXQsq2S1Ac-VrSi2OLY0rri6f_p7WD-cwOC21ptMFFU4BPCecwmpPCk7ywdOsGB0OEpxWy7Z0piDZ0gFUoE-QRuKE-uyIvW2ly3LpWgLN9Vs0vUiBcug8VHKlrS3NMeVWF3ObPOBBGATTJk8onsdEdHUbAFx2B2oVJ0SlEkrzb6HNPJNb5YUqbzrCSf_1DxSVZOviFgHUbGSZwya_A";
-    }
 
     /**
      * Display a listing of the resource.
